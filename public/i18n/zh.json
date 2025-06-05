@@ -1,0 +1,5 @@
+{
+  "app.testMessage": "这里的内容将会区分语言！",
+  "app.testMessage1": "引用文字:<<${app.testMessage}>>",
+  "app.testButton": "测试"
+}

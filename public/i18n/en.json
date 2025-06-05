@@ -1,0 +1,6 @@
+{
+  "app.testMessage": "The content here will be differentiated by language!",
+  "app.testMessage1": "Reference message:<<${app.testMessage>>",
+  "app.switchLanguage": "Switch Language",
+  "app.testButton": "Test"
+}

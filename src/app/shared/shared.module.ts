@@ -11,10 +11,12 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { TranslateModule } from '@ngx-translate/core';
 
 const THIRD_MODULES: any[] = [
   FormsModule,
   ReactiveFormsModule,
+  TranslateModule,
   AsyncPipe,
   JsonPipe,
   NgxsFormDirective,

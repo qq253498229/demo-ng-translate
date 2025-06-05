@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { provideNgxs } from './store';
+import { provideTranslateService, TranslateCompiler } from '@ngx-translate/core';
+import { CustomLanguageCompiler } from './store/system/custom-language-compiler';
 
 registerLocaleData(zh);
 
@@ -23,5 +25,9 @@ export const appConfig: ApplicationConfig = {
     provideNzIcons(icons),
     provideHttpClient(),
     provideNgxs(),
+    provideTranslateService({
+      defaultLanguage: 'en',
+      compiler: {provide: TranslateCompiler, useClass: CustomLanguageCompiler},
+    }),
   ],
 };

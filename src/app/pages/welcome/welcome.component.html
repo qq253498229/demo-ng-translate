@@ -1,1 +1,9 @@
-<p>welcome works!</p>
+<p>{{ 'app.testMessage'|translate }}</p>
+<nz-divider></nz-divider>
+<p>{{ 'app.testMessage1'|translate }}</p>
+<nz-divider></nz-divider>
+<button type="button" nz-button nzType="primary" (click)="switchLanguage()">
+  {{ 'app.switchLanguage'|translate }}
+</button>
+<nz-divider></nz-divider>
+<button type="button" nz-button nzType="primary" (click)="test()">{{ 'app.testButton'|translate }}</button>
