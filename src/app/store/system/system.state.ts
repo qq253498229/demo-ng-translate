@@ -1,22 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
-import { ChangeLanguage, InitLanguage, SwitchLanguage, SystemAction } from './system.action';
-import * as immutable from 'object-path-immutable';
+import { ChangeLanguage, InitLanguage, SwitchLanguage } from './system.action';
 import translateEN from '../../../../public/i18n/en.json';
 import translateZH from '../../../../public/i18n/zh.json';
 import { TranslateService } from '@ngx-translate/core';
 
 export interface SystemStateModel {
-  isCollapsed: boolean;
-  language: string;
+  language?: string;
 }
 
 @State<SystemStateModel>({
   name: 'system',
-  defaults: {
-    isCollapsed: false,
-    language: 'en',
-  },
+  defaults: {},
 })
 @Injectable({
   providedIn: 'root',
@@ -25,23 +20,21 @@ export class SystemState implements NgxsOnInit {
   translate = inject(TranslateService);
 
   ngxsOnInit(ctx: StateContext<any>): void {
-    let state = ctx.getState();
-    ctx.patchState({
-      language: state.language || 'en',
-    });
-  }
-
-  @Action(SystemAction.UpdateCollapsed)
-  UpdateCollapsed(ctx: StateContext<SystemStateModel>) {
-    let state = ctx.getState();
-    ctx.setState(immutable.set(state, ['isCollapsed'], !state.isCollapsed));
+    ctx.patchState({});
   }
 
   @Action(InitLanguage)
   initLanguage(ctx: StateContext<SystemStateModel>) {
+    let systemLanguage = Intl.DateTimeFormat().resolvedOptions().locale || 'en';
+    let defaultLanguage;
+    if ('zh-CN' === systemLanguage) {
+      defaultLanguage = 'zh';
+    } else {
+      defaultLanguage = 'en';
+    }
     this.translate.addLangs(['en', 'zh']);
-    this.translate.setDefaultLang('en');
-    this.translate.use(ctx.getState().language);
+    this.translate.setDefaultLang(defaultLanguage);
+    this.translate.use(ctx.getState().language || defaultLanguage);
     this.translate.setTranslation('en', translateEN);
     this.translate.setTranslation('zh', translateZH);
   }

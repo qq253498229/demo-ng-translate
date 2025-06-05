@@ -19,6 +19,9 @@ export class WelcomeComponent {
   test() {
     let language = this.store.selectSnapshot(SystemSelector.language());
     console.log('currentLang: ', language);
+
+    let lang = Intl.DateTimeFormat().resolvedOptions().locale;
+    console.log('system Language:', lang);
   }
 
   switchLanguage() {
