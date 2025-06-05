@@ -2,5 +2,6 @@
   "app.testMessage": "The content here will be differentiated by language!",
   "app.testMessage1": "Reference message:<<${app.testMessage>>",
   "app.switchLanguage": "Switch Language",
+  "app.readByProgram": "Read the text in a programmatically<<${app.testMessage>>",
   "app.testButton": "Test"
 }
